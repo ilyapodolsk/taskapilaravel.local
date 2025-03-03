@@ -33,7 +33,8 @@ class TaskController extends Controller
             }
         }
 
-        $tasks = $query->get();
+        $perPage = $request->input('per_page', 10);
+        $tasks = $query->paginate($perPage);
 
         return TaskResource::collection($tasks);
     }
