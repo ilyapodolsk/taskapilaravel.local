@@ -7,7 +7,8 @@
   Описание: Создает новую задачу.  
   Тело запроса:  
   
-  {
+```json
+{
     "title": "Задача1",
     "description": "Задача1 описание",
     "due_date": "2025-11-22 13:38:44",
@@ -15,16 +16,18 @@
     "priority": "Высокий",
     "category": "Работа",
     "status": "Не выполнена"
-  }
-  
+}
+```
   
   Ответ:  
   
-  {
+```json
+{
     "id": 1,
     "message": "Task created successfully"
-  }
-    <hr>
+}
+```
+<hr>
 - Получение списка задач  
   GET /api/tasks  
   Описание: Возвращает список задач с возможностью поиска и сортировки.  
@@ -39,6 +42,7 @@
 
   Ответ:  
   
+```json
   [
     {
       "id": 1,
@@ -51,7 +55,7 @@
       "category": "Работа",
     }
   ]
-
+```
   /api/tasks?per_page=2&page=2 
 
   Ответ:  
@@ -126,7 +130,8 @@
   Описание: Возвращает задачу по её ID.  
   Ответ:  
   
-  {
+```json
+{
     "id": 1,
     "title": "Задача1",
     "description": "Задача1 описание",
@@ -135,21 +140,24 @@
     "status": "Не выполнено",
     "priority": "Высокий",
     "category": "Работа"
-  }
-    <hr>
+}
+```
+<hr>
 - Обновление задачи  
   PUT /api/tasks/{id}  
   Описание: Обновляет информацию о задаче.  
   Тело запроса:  
   
-  {
+```json
+{
     "title": "Задача2",
     "description": "Задача2 описание обновленное",
     "due_date": "2025-11-22 13:38:44",
-    "status": "Выполнена"
+    "status": "Выполнена",
     "priority": "Низкий",
     "category": "Работа"
-  }
+}
+```
   
   
   Ответ:  
@@ -173,15 +181,15 @@
 - priority: 'Низкий', 'Средний', 'Высокий' (по умолчанию "Средний")
     <hr>
 ### Тестирование
-- Тестирование функционала проводилось в программе Postman. Скриншоты с примерами запросов и результатами находятся в директории <b>taskapilaravel.local/ScreenTests/</b>
+- Тестирование функционала проводилось в программе Postman. Скриншоты с примерами запросов и результатами находятся в директории <b>/ScreenTests/</b>
     <hr>
 ### Файлы с реализацией
-- /taskapilaravel.local/routes/api.php/
-- /taskapilaravel.local/app/Models/Task.php/
-- /taskapilaravel.local/app/Http/Requests/TaskStoreRequest.php/
-- /taskapilaravel.local/app/Http/Requests/TaskUpdateRequest.php/
-- /taskapilaravel.local/app/Http/Resources/TaskResource.php/
-- /taskapilaravel.local/app/Http/Controllers/TaskController.php/
-- /taskapilaravel.local/database/migrations/2025_02_28_185637_create_tasks_table.php/
-- /taskapilaravel.local/database/factories/TaskFactory.php/
-- /taskapilaravel.local/database/seeders/TaskSeeder.php/
+- /taskapilaravel.local/routes/api.php
+- /taskapilaravel.local/app/Models/Task.php
+- /taskapilaravel.local/app/Http/Requests/TaskStoreRequest.php
+- /taskapilaravel.local/app/Http/Requests/TaskUpdateRequest.php
+- /taskapilaravel.local/app/Http/Resources/TaskResource.php
+- /taskapilaravel.local/app/Http/Controllers/TaskController.php
+- /taskapilaravel.local/database/migrations/2025_02_28_185637_create_tasks_table.php
+- /taskapilaravel.local/database/factories/TaskFactory.php
+- /taskapilaravel.local/database/seeders/TaskSeeder.php
