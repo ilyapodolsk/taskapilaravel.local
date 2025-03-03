@@ -1,66 +1,172 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# REST API для управления списком задач
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Структура методов API
 
-## About Laravel
+- Создание задачи  
+  POST /api/tasks  
+  Описание: Создает новую задачу.  
+  Тело запроса:  
+  
+  {
+    "title": "Задача1",
+    "description": "Задача1 описание",
+    "due_date": "2025-11-22 13:38:44",
+    "created_at": "2025-11-22 13:38:44",
+    "priority": "Высокий",
+    "category": "Работа",
+    "status": "Не выполнена"
+  }
+  
+  
+  Ответ:  
+  
+  {
+    "id": 1,
+    "message": "Task created successfully"
+  }
+    <hr>
+- Получение списка задач  
+  GET /api/tasks  
+  Описание: Возвращает список задач с возможностью поиска и сортировки.  
+  Параметры запроса (опционально):
+  - search: поиск по названию.
+  - sort: due_date, created_at.
+  - per_page: количество задач на странице.
+  - page: номер страницы.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  Примеры запросов:  
+  /api/tasks?search=Задача1&sort=due_date  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  Ответ:  
+  
+  [
+    {
+      "id": 1,
+      "title": "Задача1",
+      "description": "Задача1 описание",
+      "due_date": "2025-11-22 13:38:44",
+      "created_at": "2025-11-22 13:38:44",
+      "status": "Не выполнено",
+      "priority": "Высокий",
+      "category": "Работа",
+    }
+  ]
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  /api/tasks?per_page=2&page=2 
 
-## Learning Laravel
+  Ответ:  
+  
+{
+    "data": [
+        {
+            "id": 6,
+            "title": "Тест3",
+            "description": "Тест3 описание",
+            "due_date": "2025-08-28 14:37:17",
+            "created_at": "2025-03-02T14:05:03.000000Z",
+            "status": "Не выполнено",
+            "priority": "Высокий",
+            "category": "Личное"
+        },
+        {
+            "id": 7,
+            "title": "Тест4",
+            "description": "Тест4 описание",
+            "due_date": "2025-11-22 13:38:44",
+            "created_at": "2025-03-03T10:04:44.000000Z",
+            "status": "Не выполнено",
+            "priority": "Высокий",
+            "category": "Детский сад"
+        }
+    ],
+    "links": {
+        "first": "http://taskapilaravel.local/api/tasks?page=1",
+        "last": "http://taskapilaravel.local/api/tasks?page=2",
+        "prev": "http://taskapilaravel.local/api/tasks?page=1",
+        "next": null
+    },
+    "meta": {
+        "current_page": 2,
+        "from": 3,
+        "last_page": 2,
+        "links": [
+            {
+                "url": "http://taskapilaravel.local/api/tasks?page=1",
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://taskapilaravel.local/api/tasks?page=1",
+                "label": "1",
+                "active": false
+            },
+            {
+                "url": "http://taskapilaravel.local/api/tasks?page=2",
+                "label": "2",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://taskapilaravel.local/api/tasks",
+        "per_page": 2,
+        "to": 4,
+        "total": 4
+    }
+}
+    <hr>
+- Получение конкретной задачи  
+  GET /api/tasks/{id}  
+  Описание: Возвращает задачу по её ID.  
+  Ответ:  
+  
+  {
+    "id": 1,
+    "title": "Задача1",
+    "description": "Задача1 описание",
+    "due_date": "2025-11-22 13:38:44",
+    "created_at": "2025-11-22 13:38:44",
+    "status": "Не выполнено",
+    "priority": "Высокий",
+    "category": "Работа",
+  }
+    <hr>
+- Обновление задачи  
+  PUT /api/tasks/{id}  
+  Описание: Обновляет информацию о задаче.  
+  Тело запроса:  
+  
+  {
+    "title": "Задача2",
+    "description": "Задача2 описание обновленное",
+    "due_date": "2025-11-22 13:38:44",
+    "priority": "Низкий",
+    "status": "Выполнена"
+  }
+  
+  
+  Ответ:  
+  
+  {
+    "message": "Task updated successfully"
+  }
+    <hr>
+- Удаление задачи  
+  DELETE /api/tasks/{id}  
+  Описание: Удаляет задачу по её ID.  
+  Ответ:  
+  
+  {
+    "message": "Task deleted successfully"
+  }
+    <hr>
+### Допустимые значения полей "status" и "priority"
+- status: 'Выполнено', 'Не выполнено' (по умолчанию "Не выполнено")
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- priority: 'Низкий', 'Средний', 'Высокий' (по умолчанию "Средний")
+    <hr>
+### Тестирование
+- Тестирование функционала проводилось в программе Postman. Скриншоты с примерами запросов и результатами находятся в директории /ScreenTests/
