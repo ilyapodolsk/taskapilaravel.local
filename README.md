@@ -56,69 +56,67 @@
 
   Ответ:  
   
-```json
-{
-    "data": [
-        {
-            "id": 6,
-            "title": "Тест3",
-            "description": "Тест3 описание",
-            "due_date": "2025-08-28 14:37:17",
-            "created_at": "2025-03-02T14:05:03.000000Z",
-            "status": "Не выполнено",
-            "priority": "Высокий",
-            "category": "Личное"
-        },
-        {
-            "id": 7,
-            "title": "Тест4",
-            "description": "Тест4 описание",
-            "due_date": "2025-11-22 13:38:44",
-            "created_at": "2025-03-03T10:04:44.000000Z",
-            "status": "Не выполнено",
-            "priority": "Высокий",
-            "category": "Детский сад"
-        }
-    ],
-    "links": {
-        "first": "http://taskapilaravel.local/api/tasks?page=1",
-        "last": "http://taskapilaravel.local/api/tasks?page=2",
-        "prev": "http://taskapilaravel.local/api/tasks?page=1",
-        "next": null
-    },
-    "meta": {
-        "current_page": 2,
-        "from": 3,
-        "last_page": 2,
-        "links": [
-            {
-                "url": "http://taskapilaravel.local/api/tasks?page=1",
-                "label": "&laquo; Previous",
-                "active": false
-            },
-            {
-                "url": "http://taskapilaravel.local/api/tasks?page=1",
-                "label": "1",
-                "active": false
-            },
-            {
-                "url": "http://taskapilaravel.local/api/tasks?page=2",
-                "label": "2",
-                "active": true
-            },
-            {
-                "url": null,
-                "label": "Next &raquo;",
-                "active": false
-            }
-        ],
-        "path": "http://taskapilaravel.local/api/tasks",
-        "per_page": 2,
-        "to": 4,
-        "total": 4
-    }
+{<br>
+    "data": [<br>
+        {<br>
+            "id": 6,<br>
+            "title": "Тест3",<br>
+            "description": "Тест3 описание",<br>
+            "due_date": "2025-08-28 14:37:17",<br>
+            "created_at": "2025-03-02T14:05:03.000000Z",<br>
+            "status": "Не выполнено",<br>
+            "priority": "Высокий",<br>
+            "category": "Личное"<br>
+        },<br>
+        {<br>
+            "id": 7,<br>
+            "title": "Тест4",<br>
+            "description": "Тест4 описание",<br>
+            "due_date": "2025-11-22 13:38:44",<br>
+            "created_at": "2025-03-03T10:04:44.000000Z",<br>
+            "status": "Не выполнено",<br>
+            "priority": "Высокий",<br>
+            "category": "Детский сад"<br>
+        }<br>
+    ],<br>
+    "links": {<br>
+        "first": "http://taskapilaravel.local/api/tasks?page=1",<br>
+        "last": "http://taskapilaravel.local/api/tasks?page=2",<br>
+        "prev": "http://taskapilaravel.local/api/tasks?page=1",<br>
+        "next": null<br>
+    },<br>
+    "meta": {<br>
+        "current_page": 2,<br>
+        "from": 3,<br>
+        "last_page": 2,<br>
+        "links": [<br>
+            {<br>
+                "url": "http://taskapilaravel.local/api/tasks?page=1",<br>
+                "label": "&laquo; Previous",<br>
+                "active": false<br>
+            },<br>
+            {<br>
+                "url": "http://taskapilaravel.local/api/tasks?page=1",<br>
+                "label": "1",<br>
+                "active": false<br>
+            },<br>
+            {<br>
+                "url": "http://taskapilaravel.local/api/tasks?page=2",<br>
+                "label": "2",<br>
+                "active": true<br>
+            },<br>
+            {<br>
+                "url": null,<br>
+                "label": "Next &raquo;",<br>
+                "active": false<br>
+            }<br>
+        ],<br>
+        "path": "http://taskapilaravel.local/api/tasks",<br>
+        "per_page": 2,<br>
+        "to": 4,<br>
+        "total": 4<br>
+    }<br>
 }
-```
     <hr>
 - Получение конкретной задачи  
   GET /api/tasks/{id}  
