@@ -56,6 +56,7 @@
 
   Ответ:  
   
+```json
 {
     "data": [
         {
@@ -117,6 +118,7 @@
         "total": 4
     }
 }
+```
     <hr>
 - Получение конкретной задачи  
   GET /api/tasks/{id}  
@@ -131,7 +133,7 @@
     "created_at": "2025-11-22 13:38:44",
     "status": "Не выполнено",
     "priority": "Высокий",
-    "category": "Работа",
+    "category": "Работа"
   }
     <hr>
 - Обновление задачи  
@@ -143,8 +145,9 @@
     "title": "Задача2",
     "description": "Задача2 описание обновленное",
     "due_date": "2025-11-22 13:38:44",
-    "priority": "Низкий",
     "status": "Выполнена"
+    "priority": "Низкий",
+    "category": "Работа"
   }
   
   
@@ -169,4 +172,15 @@
 - priority: 'Низкий', 'Средний', 'Высокий' (по умолчанию "Средний")
     <hr>
 ### Тестирование
-- Тестирование функционала проводилось в программе Postman. Скриншоты с примерами запросов и результатами находятся в директории /ScreenTests/
+- Тестирование функционала проводилось в программе Postman. Скриншоты с примерами запросов и результатами находятся в директории <b>taskapilaravel.local/ScreenTests/</b>
+    <hr>
+### Файлы с реализацией
+- /taskapilaravel.local/routes/api.php/
+- /taskapilaravel.local/app/Models/Task.php/
+- /taskapilaravel.local/app/Http/Requests/TaskStoreRequest.php/
+- /taskapilaravel.local/app/Http/Requests/TaskUpdateRequest.php/
+- /taskapilaravel.local/app/Http/Resources/TaskResource.php/
+- /taskapilaravel.local/app/Http/Controllers/TaskController.php/
+- /taskapilaravel.local/database/migrations/2025_02_28_185637_create_tasks_table.php/
+- /taskapilaravel.local/database/factories/TaskFactory.php/
+- /taskapilaravel.local/database/seeders/TaskSeeder.php/
